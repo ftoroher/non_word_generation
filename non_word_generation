@@ -1,0 +1,30 @@
+##NonWord generation
+
+#cleaning
+rm(list = ls())
+
+#data
+setwd("C:/Users/your_words")
+df <- data.frame(read_xlsx('words_stimuli.xlsx'))
+words <- as.data.frame(df$wordscolumn)
+
+#creating empty data frame
+NonWords <- as.data.frame(c())
+
+#seed for replicability
+set.seed(666)
+
+#loop contador
+contador<-1
+while (contador<(length(df$word)+1)){
+  for (i in words){
+    d<- strsplit(i[],"")[[contador]]
+    d<-sample(d)
+    NW<-paste(d, collapse='')
+    NonWords <- rbind(NonWords,NW) 
+  }
+contador=contador+1
+}
+
+#excel generation
+write_excel_csv(NonWords, file='non_words.csv')
